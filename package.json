@@ -1,0 +1,22 @@
+{
+  "name": "drawusingbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "electron": "cd Electron && npm start",
+    "start": "node index.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "color-name": "^1.1.4",
+    "cpu-stat": "^2.0.1",
+    "danbot-hosting": "^0.1.6",
+    "discord.js": "^12.5.3",
+    "dotenv-flow": "^3.2.0",
+    "moment-timezone": "^0.5.33"
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas: Alpha v0.0.1</title>
+    <script src="libs/p5.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+</head>
+
+<body style="background: #eeeeee;">
+    <p align="center"><strong>Go to chat and use CDS!help for more information</strong></p>
+    <script>
+        //Some copied code from p5 i think, idk man, don't even ask me lul :)
+        let db;
+        //this is the worst method to get json into html, pls send help
+        let getdata = function () {
+            $(function () {
+                $.getJSON('db.json', function (data) {
+                    db = data;
+                });
+            });
+        }
+        async function loopdb() {
+            while (true) {
+                await sleep(1500);
+                getdata();
+            }
+        }
+        let sleep = ms => {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        let w;
+        let columns;
+        let rows;
+        let board;
+
+        function setup() {
+            createCanvas(780, 570);
+            w = 15;
+            columns = floor(width / w);
+            rows = floor(height / w);
+            board = new Array(columns);
+            for (let i = 0; i < columns; i++) {
+                board[i] = new Array(rows);
+            }
+            clear_board();
+            loopdb()
+        }
+
+        function draw() {
+            if(!db)return;
+            background(255);
+            for (let i = 0; i < columns; i++) {
+                for (let j = 0; j < rows; j++) {
+                    let c = color(db[i][j].r, db[i][j].g, db[i][j].b);
+                    fill(c);
+                    stroke(0);
+                    rect(i * w, j * w, w - 1, w - 1);
+                }
+            }
+        }
+
+        function clear_board() {
+            for (let i = 0; i < columns; i++)
+                for (let j = 0; j < rows; j++)
+                    board[i][j] = 0;
+        }
+
+        function mousePressed() {
+            let x = floor(mouseX / w);
+            let y = floor(mouseY / w);
+            board[x][y] = 1
+        }
+
+        function keyPressed() {
+            if (keyCode == 27) {
+                window.close()
+            }
+        }
+    </script>
+</body>
+
+</html>
