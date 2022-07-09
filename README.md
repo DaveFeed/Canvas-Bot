@@ -8,6 +8,7 @@ This was created for users to have one user stream the window, and others to hav
 ### Packing the code yourself
 - Download the code
 - Do `npm install` in the main folder
+- Rename `.env.example` to `.env` and edit the lines which are required. (Optionals can be left untouched)
 - To run the bot, use `npm start` in the main folder
 - To run the canvas, create another console window and use `npm run electron` in the main folder
 
